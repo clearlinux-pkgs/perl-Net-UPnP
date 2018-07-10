@@ -1,28 +1,5 @@
 Revision history for Perl extension UPnP.
 
-2014-10-16 Satoshi Konno <skonno@cybergarage.org>
-	* v1.4.3
-	* Added Build.PL for Module::Build.
-	* Updated MANIFEST and Makefile.PL.
-
-2013-12-27 Thomas Liske <thomas at fiasko-nw.net>
-	* Implement handling of chunked "Transfer-Encoding".
-
-2010-08-07 Satoshi Konno <skonno@cybergarage.org>
-	* Changed UPnP::AV::MediaServer::getcontentlist() to get contents from non standard UPnP/AV media servers.
-
-2009-07-27 Satoshi Konno <skonno@cybergarage.org>
-	* v1.4.2
-	* Added Net::UPnP::SetDebug().
-	* Fixed Net:UPnP::ControlPoint::search() not to use uninitialize value on the debug mode.
-	* Added two examples, upnpchk.pl and upnpavchk.pl, to check UPnP and UPnP/AV devices.
-
-2009-06-10 Tim Engler <engler at gmail.com>
-	* Fixed Net:UPnP::Device::getdescription() to use a non-greedy match.
-
-2009-02-13 miz <miz999 at gmail.com>
-	* Fixed Net:UPnP::HTTP::post() to convert the line feed to CRLF.
-
 2008-10-15 Satoshi Konno <skonno@cybergarage.org>
 	* v1.4.1
 	* Fixed a documentatin of Net::UPnP::AV::MediaRenderer.
