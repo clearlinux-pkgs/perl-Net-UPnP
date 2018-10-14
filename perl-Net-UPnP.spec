@@ -4,15 +4,15 @@
 #
 Name     : perl-Net-UPnP
 Version  : 1.41
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.41.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.41.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-upnp-perl/libnet-upnp-perl_1.4.3-1.debian.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: perl-Net-UPnP-license
-Requires: perl-Net-UPnP-man
+Requires: perl-Net-UPnP-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Net::UPnP version 1.2.4
@@ -20,6 +20,15 @@ Net::UPnP version 1.2.4
 how to install the module, any machine dependencies it may have (for
 example C compilers and installed libraries) and any other information
 that should be provided before the module is installed.
+
+%package dev
+Summary: dev components for the perl-Net-UPnP package.
+Group: Development
+Provides: perl-Net-UPnP-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Net-UPnP package.
+
 
 %package license
 Summary: license components for the perl-Net-UPnP package.
@@ -29,19 +38,11 @@ Group: Default
 license components for the perl-Net-UPnP package.
 
 
-%package man
-Summary: man components for the perl-Net-UPnP package.
-Group: Default
-
-%description man
-man components for the perl-Net-UPnP package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Net-UPnP-1.41
-mkdir -p %{_topdir}/BUILD/Net-UPnP-1.41/deblicense/
+cd ..
+%setup -q -T -D -n Net-UPnP-1.41 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Net-UPnP-1.41/deblicense/
 
 %build
@@ -66,12 +67,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Net-UPnP
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Net-UPnP/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Net-UPnP
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Net-UPnP/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -80,26 +81,22 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/AV/Container.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/AV/Content.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/AV/Item.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/AV/MediaRenderer.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/AV/MediaServer.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/ActionResponse.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/ControlPoint.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/Device.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/GW/Gateway.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/HTTP.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/HTTPResponse.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/QueryResponse.pm
-/usr/lib/perl5/site_perl/5.26.1/Net/UPnP/Service.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/AV/Container.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/AV/Content.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/AV/Item.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/AV/MediaRenderer.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/AV/MediaServer.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/ActionResponse.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/ControlPoint.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/Device.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/GW/Gateway.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/HTTP.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/HTTPResponse.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/QueryResponse.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Net/UPnP/Service.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Net-UPnP/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Net::UPnP.3
 /usr/share/man/man3/Net::UPnP::AV::Container.3
@@ -115,3 +112,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/share/man/man3/Net::UPnP::HTTPResponse.3
 /usr/share/man/man3/Net::UPnP::QueryResponse.3
 /usr/share/man/man3/Net::UPnP::Service.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Net-UPnP/deblicense_copyright
