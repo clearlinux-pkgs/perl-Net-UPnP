@@ -4,7 +4,7 @@
 #
 Name     : perl-Net-UPnP
 Version  : 1.41
-Release  : 6
+Release  : 7
 URL      : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.41.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.41.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-upnp-perl/libnet-upnp-perl_1.4.3-1.debian.tar.xz
