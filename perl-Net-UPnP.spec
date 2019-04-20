@@ -81,20 +81,20 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/AV/Container.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/AV/Content.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/AV/Item.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/AV/MediaRenderer.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/AV/MediaServer.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/ActionResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/ControlPoint.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/Device.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/GW/Gateway.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/HTTP.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/HTTPResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/QueryResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.1/Net/UPnP/Service.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Container.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Content.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Item.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/MediaRenderer.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/MediaServer.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/ActionResponse.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/ControlPoint.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/Device.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/GW/Gateway.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/HTTP.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/HTTPResponse.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/QueryResponse.pm
+/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/Service.pm
 
 %files dev
 %defattr(-,root,root,-)
