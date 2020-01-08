@@ -4,7 +4,7 @@
 #
 Name     : perl-Net-UPnP
 Version  : 1.4.6
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.4.6.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.4.6.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-upnp-perl/libnet-upnp-perl_1.4.6-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'Perl extension for UPnP'
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: perl-Net-UPnP-license = %{version}-%{release}
+Requires: perl-Net-UPnP-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -25,6 +26,7 @@ that should be provided before the module is installed.
 Summary: dev components for the perl-Net-UPnP package.
 Group: Development
 Provides: perl-Net-UPnP-devel = %{version}-%{release}
+Requires: perl-Net-UPnP = %{version}-%{release}
 
 %description dev
 dev components for the perl-Net-UPnP package.
@@ -38,18 +40,28 @@ Group: Default
 license components for the perl-Net-UPnP package.
 
 
+%package perl
+Summary: perl components for the perl-Net-UPnP package.
+Group: Default
+Requires: perl-Net-UPnP = %{version}-%{release}
+
+%description perl
+perl components for the perl-Net-UPnP package.
+
+
 %prep
 %setup -q -n Net-UPnP-1.4.6
-cd ..
-%setup -q -T -D -n Net-UPnP-1.4.6 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libnet-upnp-perl_1.4.6-1.debian.tar.xz
+cd %{_builddir}/Net-UPnP-1.4.6
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Net-UPnP-1.4.6/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Net-UPnP-1.4.6/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +71,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,7 +80,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Net-UPnP
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Net-UPnP/deblicense_copyright
+cp %{_builddir}/Net-UPnP-1.4.6/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Net-UPnP/8f5b1549c0656019c12ff818e140fe1fff18f9d7
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,20 +93,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Container.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Content.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/Item.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/MediaRenderer.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/AV/MediaServer.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/ActionResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/ControlPoint.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/Device.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/GW/Gateway.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/HTTP.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/HTTPResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/QueryResponse.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Net/UPnP/Service.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -115,4 +113,21 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Net-UPnP/deblicense_copyright
+/usr/share/package-licenses/perl-Net-UPnP/8f5b1549c0656019c12ff818e140fe1fff18f9d7
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/AV/Container.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/AV/Content.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/AV/Item.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/AV/MediaRenderer.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/AV/MediaServer.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/ActionResponse.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/ControlPoint.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/Device.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/GW/Gateway.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/HTTP.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/HTTPResponse.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/QueryResponse.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Net/UPnP/Service.pm
