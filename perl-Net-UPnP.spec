@@ -4,7 +4,7 @@
 #
 Name     : perl-Net-UPnP
 Version  : 1.4.6
-Release  : 19
+Release  : 20
 URL      : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.4.6.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SK/SKONNO/Net-UPnP-1.4.6.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libn/libnet-upnp-perl/libnet-upnp-perl_1.4.6-1.debian.tar.xz
@@ -117,17 +117,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/AV/Container.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/AV/Content.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/AV/Item.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/AV/MediaRenderer.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/AV/MediaServer.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/ActionResponse.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/ControlPoint.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/Device.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/GW/Gateway.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/HTTP.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/HTTPResponse.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/QueryResponse.pm
-/usr/lib/perl5/vendor_perl/5.34.0/Net/UPnP/Service.pm
+/usr/lib/perl5/*
